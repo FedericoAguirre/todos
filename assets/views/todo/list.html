@@ -16,10 +16,16 @@ List of todo
                 <label><b>{{"priority" | capitalize }}:</b> {{item.priority}}</label>
                 </div>
             <div>
-                <label><b>{{"start_date" | capitalize }}:</b> {{item.start_date}}</label>
+                <label><b>{{"start date" | capitalize }}:</b> {{item.start_date}}</label>
                 </div>
             <div>
-                <label><b>{{"end_date" | capitalize }}:</b> {{item.end_date}}</label>
+                <label><b>{{"end date" | capitalize }}:</b>
+                    {% if item.end_date %}
+                    {{item.end_date}}
+                    {% else %}
+                    Not yet
+                    {% endif %}
+                </label>
                 </div>
             <a href="/todos/{{ item.id }}/edit">Edit</a>
             <a href="/todos/{{ item.id }}">View</a>
