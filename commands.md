@@ -8,11 +8,16 @@
 4. Piensa si mover o no las tareas sin completar a la lista de mañana.
 5. Repite esto todos los días y verás la diferencia.
 
-Task
-  date date
-  task varchar(255)
-  priority smallint 1 to 6
-  status_id fk status
+Statuses
+  status varchar(255) not null
+
+Tasks
+  date date not null
+  task varchar(255) not null
+  priority smallint not null (1 to 6)
+  start_date date not null
+  end_date date null
+  status_id fk status not null references Statuses
 
 ## Status
 
