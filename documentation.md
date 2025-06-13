@@ -75,7 +75,7 @@ cargo test
 
 ## Application TODOS
 
-- In /todos route, order by priority ascending
+- ~~In /todos route, order by priority ascending~~
 - In /todos route, add status_id and status
 - In /todos/{id} route, add status_id and status
 - In /todos/{id}/edit, add end_date control

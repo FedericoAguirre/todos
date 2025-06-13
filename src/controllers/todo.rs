@@ -1,10 +1,10 @@
 #![allow(clippy::missing_errors_doc)]
 #![allow(clippy::unnecessary_struct_initialization)]
 #![allow(clippy::unused_async)]
-use loco_rs::prelude::*;
-use serde::{Deserialize, Serialize};
-use sea_orm::{sea_query::Order, QueryOrder};
 use axum::debug_handler;
+use loco_rs::prelude::*;
+use sea_orm::{sea_query::Order, QueryOrder};
+use serde::{Deserialize, Serialize};
 
 use crate::{
     models::_entities::todos::{ActiveModel, Column, Entity, Model},
@@ -17,15 +17,15 @@ pub struct Params {
     pub priority: i8,
     pub start_date: Date,
     pub end_date: Option<Date>,
-    }
+}
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.todo = Set(self.todo.clone());
-      item.priority = Set(self.priority.clone());
-      item.start_date = Set(self.start_date.clone());
-      item.end_date = Set(self.end_date.clone());
-      }
+        item.todo = Set(self.todo.clone());
+        item.priority = Set(self.priority.clone());
+        item.start_date = Set(self.start_date.clone());
+        item.end_date = Set(self.end_date.clone());
+    }
 }
 
 async fn load_item(ctx: &AppContext, id: i32) -> Result<Model> {
@@ -39,7 +39,8 @@ pub async fn list(
     State(ctx): State<AppContext>,
 ) -> Result<Response> {
     let item = Entity::find()
-        .order_by(Column::Id, Order::Desc)
+        .filter(Column::StatusId.ne(3)) // NOT DONE
+        .order_by(Column::Priority, Order::Asc)
         .all(&ctx.db)
         .await?;
     views::todo::list(&v, &item)

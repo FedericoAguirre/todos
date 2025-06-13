@@ -15,7 +15,10 @@ use std::path::Path;
 
 #[allow(unused_imports)]
 use crate::{
-    controllers, initializers, models::_entities::{users,statuses,todos}, tasks, workers::downloader::DownloadWorker,
+    controllers, initializers,
+    models::_entities::{statuses, todos, users},
+    tasks,
+    workers::downloader::DownloadWorker,
 };
 
 pub struct App;
@@ -71,8 +74,11 @@ impl Hooks for App {
     async fn seed(ctx: &AppContext, base: &Path) -> Result<()> {
         db::seed::<users::ActiveModel>(&ctx.db, &base.join("users.yaml").display().to_string())
             .await?;
-        db::seed::<statuses::ActiveModel>(&ctx.db, &base.join("statuses.yaml").display().to_string())
-            .await?;
+        db::seed::<statuses::ActiveModel>(
+            &ctx.db,
+            &base.join("statuses.yaml").display().to_string(),
+        )
+        .await?;
         db::seed::<todos::ActiveModel>(&ctx.db, &base.join("todos.yaml").display().to_string())
             .await?;
         Ok(())
