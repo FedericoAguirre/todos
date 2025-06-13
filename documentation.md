@@ -82,4 +82,4 @@ cargo test
 - In /todos/{id}/edit, add status_id control (listbox)
 - In /todos/new, remove end_date control
 - In /todos/new, make start_date defaulted to today's date.
-- In /todos/new, make status_id defaulted to 1.
+- In /todos/new, make status_id defaulted to 1 - TO DO status.
