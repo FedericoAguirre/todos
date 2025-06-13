@@ -34,7 +34,7 @@ erDiagram
         Date end_date "nullable"
         i32 status_id FK "required"
     }
-````
+```
 
 ## SQL definitions
 
@@ -70,3 +70,16 @@ cargo loco db migrate
 
 cargo test
 ```
+
+---
+
+## Application TODOS
+
+- In /todos route, order by priority ascending
+- In /todos route, add status_id and status
+- In /todos/{id} route, add status_id and status
+- In /todos/{id}/edit, add end_date control
+- In /todos/{id}/edit, add status_id control (listbox)
+- In /todos/new, remove end_date control
+- In /todos/new, make start_date defaulted to today's date.
+- In /todos/new, make status_id defaulted to 1.
