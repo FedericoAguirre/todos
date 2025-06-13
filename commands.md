@@ -8,6 +8,37 @@
 4. Piensa si mover o no las tareas sin completar a la lista de mañana.
 5. Repite esto todos los días y verás la diferencia.
 
+---
+
+## Todos ER Diagram
+
+```mermaid
+---
+title: TODOS
+---
+erDiagram
+    Statuses ||--o{ Todos : have
+    Statuses {
+        DateTimeWithTimeZone created_at "required"
+        DateTimeWithTimeZone updated_at "required"
+        i32 id PK "required"
+        string status "required"
+    }
+    Todos {
+        DateTimeWithTimeZone created_at "required"
+        DateTimeWithTimeZone updated_at "required"
+        i32 id PK "required"
+        string todo "required"
+        i8 priority "required"
+        Date start_date "required"
+        Date end_date "nullable"
+        i32 status_id FK "required"
+    }
+````
+
+## SQL definitions
+
+```text
 Statuses
   status varchar(255) not null
 
@@ -18,14 +49,14 @@ Tasks
   start_date date not null
   end_date date null
   status_id fk status not null references Statuses
+```
 
-## Status
+## Loco commands
 
 ```bash
 cargo loco generate scaffold status \
     status:string \
     --htmx
-```
 
 cargo loco generate scaffold todo \
     todo:string! \
@@ -36,5 +67,6 @@ cargo loco generate scaffold todo \
     --htmx
 
 cargo loco db migrate
-cargo test
 
+cargo test
+```
