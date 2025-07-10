@@ -69,6 +69,8 @@ cargo loco generate scaffold todo \
 cargo loco db migrate
 
 cargo test
+
+./target/release/todos-cli db seed
 ```
 
 ---
